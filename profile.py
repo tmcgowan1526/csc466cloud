@@ -6,7 +6,7 @@ request = portal.context.makeRequestRSpec()
 
 for i in range(2):
   # Create a XenVM
-  node = request.XenVM("node")
+  node = request.XenVM("node" + str(i))
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD"
   node.routable_control_ip = "true"
 
