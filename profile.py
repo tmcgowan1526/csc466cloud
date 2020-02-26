@@ -37,19 +37,19 @@ for i in range(num_nodes):
   
   # setup NFS
   if i == 0:
-    node.addService(RSpec.Execute("sh", "sudo apt-get update"))
-    node.addService(RSpec.Execute("sh", "sudo apt-get install -y nfs-kernel-server"))
-    node.addService(RSpec.Execute("sh", "sudo mkdir -p /opt/keys"))
-    node.addService(RSpec.Execute("sh", "sudo chown nobody:nogroup /opt/keys"))
+    node.addService(pg.Execute("sh", "sudo apt-get update"))
+    node.addService(pg.Execute("sh", "sudo apt-get install -y nfs-kernel-server"))
+    node.addService(pg.Execute("sh", "sudo mkdir -p /opt/keys"))
+    node.addService(pg.Execute("sh", "sudo chown nobody:nogroup /opt/keys"))
     for k in range(1,num_nodes):
-      node.addService(RSpec.Execute("sh", "sudo echo '/opt/keys 192.168.1." + str(k+1) + "(rw,sync,no_root_squash,no_subtree_check)' | sudo tee -a /etc/exports"))
-    node.addService(RSpec.Execute("sh", "sudo systemctl restart nfs-kernel-server"))
+      node.addService(pg.Execute("sh", "sudo echo '/opt/keys 192.168.1." + str(k+1) + "(rw,sync,no_root_squash,no_subtree_check)' | sudo tee -a /etc/exports"))
+    node.addService(pg.Execute("sh", "sudo systemctl restart nfs-kernel-server"))
   else:
-    node.addService(RSpec.Execute("sh", "sudo apt-get update"))
-    node.addService(RSpec.Execute("sh", "sudo apt-get install -y nfs-common"))
-    node.addService(RSpec.Execute("sh", "sudo mkdir -p /opt/keys"))
-    node.addService(RSpec.Execute("sh", "sleep 3m"))
-    node.addService(RSpec.Execute("sh", "sudo mount 192.168.1.1:/opt/keys /opt/keys"))
+    node.addService(pg.Execute("sh", "sudo apt-get update"))
+    node.addService(pg.Execute("sh", "sudo apt-get install -y nfs-common"))
+    node.addService(pg.Execute("sh", "sudo mkdir -p /opt/keys"))
+    node.addService(pg.Execute("sh", "sleep 3m"))
+    node.addService(pg.Execute("sh", "sudo mount 192.168.1.1:/opt/keys /opt/keys"))
   
   # setup Docker
   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_docker.sh"))
