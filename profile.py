@@ -54,4 +54,7 @@ for i in range(num_nodes):
   # setup Docker
   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_docker.sh"))
   
+  # setup Kubernetes
+  node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_kubernetes.sh"))
+  
 pc.printRequestRSpec(request)
