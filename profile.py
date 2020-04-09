@@ -38,4 +38,9 @@ for i in range(3):
   link.addInterface(iface)
   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_docker.sh"))
   
+  if i == 0:
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/nfs/nfsServer.sh"))
+  else: 
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/nfs/nfsClient.sh"))
+  
 pc.printRequestRSpec(request)
