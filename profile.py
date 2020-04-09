@@ -23,9 +23,11 @@ link = request.LAN("lan")
 
 for i in range(3):
   if i == 0:
-    node = request.XenVM("head")
+    #node = request.XenVM("head")
+    node=request.RawPC("head")
   else:
-    node = request.XenVM("worker-" + str(i))
+    #node = request.XenVM("worker-" + str(i))
+    node=request.RawPC("worker-" + str(i))
   #node.cores = 2
   #node.ram = 2048
   node.routable_control_ip = "true" 
