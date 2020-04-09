@@ -17,3 +17,8 @@ done
 
 # Keep the shared dirs after a reboot
 echo '192.168.1.1:/opt/keys /opt/keys/ nfs' | sudo tee -a /etc/fstab
+
+# join sawm
+sleep 10
+command=`sed -n '5p' /opt/keys/swarm.log`
+$command
