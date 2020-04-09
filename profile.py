@@ -26,8 +26,8 @@ for i in range(3):
     node = request.XenVM("head")
   else:
     node = request.XenVM("worker-" + str(i))
-  node.cores = 4
-  node.ram = 8192
+  node.cores = 2
+  node.ram = 4096
   node.routable_control_ip = "true" 
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-ARM"
   iface = node.addInterface("if" + str(i))
