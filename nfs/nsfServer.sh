@@ -1,33 +1,15 @@
 #!/bin/bash
 
-echo 'installNfsHead.sh'
-
-USERNAMELIST=$(getent passwd {1000..60000} | sed 's/:.*//')
+echo 'NFS server isntallation'
 
 set -x
 
-mkdir /mpishare
-mkdir /software
+mkdir -p /opt/keys
 
-sudo chown nobody:nogroup /home
-sudo chown nobody:nogroup /mpishare
-sudo chown nobody:nogroup /opt
-sudo chown nobody:nogroup /software
-
-sudo chmod -R 777 /home
-sudo chmod -R 777 /mpishare
-sudo chmod -R a+rx /opt
-sudo chmod -R a+rx /software
+sudo chown nobody:nogroup /opt/keys
+sudo chmod -R a+rx /opt/keys
 
 #################
-
-# Change user home dirs
-for i in $USERNAMELIST 
-do
-    USER_GROUP=`id -gn ${i}`
-    sudo usermod -m -d /home/$i $i
-    sudo chown $i:$USER_GROUP /home/$i
-done
 
 sudo apt-get install -y nfs-kernel-server
 
