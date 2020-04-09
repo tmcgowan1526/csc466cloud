@@ -10,7 +10,7 @@ sudo mkdir /opt/keys
 
 sudo mount 192.168.1.1:/opt/keys /opt/keys || true
 # Cycle until we can mount software.
-while [ ! -d /opt/keys ]; do
+while [ ! -d /opt/keys/flagdir ]; do
   sudo mount 192.168.1.1:/opt/keys /opt/keys || true
   sleep 60
 done
