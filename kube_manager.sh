@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -x
 
 kubeadm init > /opt/keys/kube.log
 mkdir -p $HOME/.kube
