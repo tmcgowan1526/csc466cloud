@@ -59,5 +59,9 @@ for i in range(num_nodes):
   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_kubernetes.sh"))
   node.addService(pg.Execute(shell="sh", command="sudo swapoff -a"))
   
-  
+  if i == 0:
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh"))
+  else:
+    node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
+    
 pc.printRequestRSpec(request)
