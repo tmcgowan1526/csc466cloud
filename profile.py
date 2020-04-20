@@ -41,6 +41,7 @@ for i in range(num_nodes):
     node.addService(pg.Execute("sh", "sudo apt-get install -y nfs-kernel-server"))
     node.addService(pg.Execute("sh", "sudo mkdir -p /opt/keys"))
     node.addService(pg.Execute("sh", "sudo chown nobody:nogroup /opt/keys"))
+    node.addService(pg.Execute("sh","sudo chmod -R a+rwx /opt/keys"))
     for k in range(1,num_nodes):
       node.addService(pg.Execute("sh", "sudo echo '/opt/keys 192.168.1." + str(k+1) + "(rw,sync,no_root_squash,no_subtree_check)' | sudo tee -a /etc/exports"))
     node.addService(pg.Execute("sh", "sudo systemctl restart nfs-kernel-server"))
