@@ -57,5 +57,7 @@ for i in range(num_nodes):
   
   # setup Kubernetes
   node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_kubernetes.sh"))
+  node.addService(pg.Execute(shell="sh", command="sudo swapoff -a"))
+  
   
 pc.printRequestRSpec(request)
